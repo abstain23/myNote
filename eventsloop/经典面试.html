@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+    var a = 10
+    function f(){
+      console.log(a)
+      var a = 20
+    }
+    f() //undefined
+
+    let b =10
+    function ff(){
+      console.log(b)
+      let b =20
+    }
+    ff() //Cannot access 'b' before initialization
+    */
+    
+    var array = []
+    for(let i=0;i<3;i++){
+      array.push(()=>i)
+      // console.log(i)
+    }
+    console.log(array) //[()=>i*3]
+    console.log(array[0]()) //0
+    console.log(array[1]()) //1
+    console.log(array[2]()) //2
+    var newArr = array.map(el=>el())
+    console.log(newArr) //0,1,2
+    //在for里面使用var 的话全是3
+  </script>
+</body>
+</html>

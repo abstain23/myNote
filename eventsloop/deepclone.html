@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>深拷贝的几种方式</title>
+</head>
+<body>
+  <script>
+    //深拷贝实现的几种方式
+
+    //运用递归
+    function deepclone(obj){
+      let newObj = Array.isArray(obj)?[]:{}
+      if(typeof obj !== 'object'){
+        return obj
+      }else {
+        console.log('obj is object')
+        for(let key in obj){
+          newObj[key]=typeof obj[key]==='object'?deepclone(obj[key]):obj[key]
+        }
+      }
+      return newObj
+    }
+    console.log(deepclone(1))
+    const obj = {name:'yyy'}
+    const obj2 = deepclone(obj)
+    obj2.name='xxx'
+    console.log(obj)
+    console.log(obj2)
+    // 使用json对象的方法
+    /*
+    var a = [1,2,3]
+    var b = JSON.parse(JSON.stringify(a))
+    a[2]=4
+    console.log(a)
+    console.log(b)
+    */
+
+
+    // 使用es6的展开运算符 以下几种都是针对数组的
+    /*
+    var a = [1,3,4]
+    var b=[...a]
+    b.push(4)
+    console.log('b',b)
+    console.log('a',a)
+    */
+
+    //使用cancat
+    /*
+    var c = [6,7,8]
+    var d=[]
+    //var e = d.concat(c)
+    var e = c.splice(1)
+    // e.push(3)
+    // c.push(1)
+    c[1]=0
+    console.log('e',e)
+    console.log('c',c)
+    */
+   /*
+    var a = [1,[2,3],4]
+    var b = a.slice(1)
+    
+    console.log(a)
+    console.log(b)
+ 
+    a[1][0] = 5
+    a[2] = 6
+
+    console.log(a)
+    console.log(b)
+    */
+    
+  </script>
+</body>
+</html>

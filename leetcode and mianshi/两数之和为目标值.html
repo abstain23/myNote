@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var sum = function(arr,target) {
+      var a = []
+      for(var i=0,len=arr.length;i<len;i++){
+        var temp = target-arr[i]
+        if(a[temp]!==undefined){
+          return [a[temp],i]
+        }
+        a[arr[i]]=i
+      }
+    }
+    console.log(sum([1,2,4,2],4))
+    3
+    a[3]=0
+    2
+    a[2]=1
+    0
+    a[4]=3
+    2
+
+    var ss = function(arr,target) {
+      var res = {}
+      var len = nums.length
+      for(var i = 0;i<len;i++){
+        var diff = target - nums[i]
+        if(diff in res){
+          return [res[diff],i]
+        }
+        res[diff] = i
+      }
+    }
+  </script>
+</body>
+</html>

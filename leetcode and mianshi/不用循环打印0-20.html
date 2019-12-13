@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // var num = 0 
+    // setInterval(() => {
+    //   if(num<20){
+    //     num++
+    //     console.log(num)
+    //   }
+      
+    // })  
+      // i=0
+      // a = (new Array(101)).join('console.log(++i);')
+      // console.log(a)
+      // eval(...['console.log(1)'])
+      // eval(a)
+      
+      var name = 'window'
+      var obj = {
+        name: 'obj',
+        getName:function() {
+          return function() {
+            return this.name
+          }
+        }
+      }
+      console.log(obj.getName()())
+  </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="date" value="2019-12-06" pattern="xx"> 
+  <input type="color">
+  <input type="datetime-local" id="xx" value="2019-12-06T14:54">
+  <script>
+    console.log(xx.value)
+
+    function Fn(){
+      var n =10
+      this.m=100
+    }  
+    Fn.prototype.aa=function(){
+      console.log('aa')
+    }
+    Fn.bb=function(){
+      console.log('bb')
+    }
+    Fn() 
+    var f = new Fn()
+    console.log(f.n) //undefined
+    console.log(f.m) //100
+    f.aa() //'aa'
+    console.log(f.bb())//报错
+    Fn.bb()//'bb'
+  </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>事件</title>
+  <style>
+    ul>li {
+      width: 50px;
+      height: 20px;
+      margin: 5px 5px;
+      border: 1px solid green;
+    }
+  </style>
+</head>
+<body>
+  <div  id="test" onclick="test()" style="width: 200px;height: 200px;border: 1px solid red;"> 
+
+  </div>
+
+  <ul> 
+    <li>item1</li>
+    <li>item2</li>
+    <li>item3</li>
+    <li>item4</li>
+  </ul>
+  <script>
+    function test(){
+      console.log('test')
+    }
+    let test2 = document.getElementById('test')
+    test2.onclick=function(){
+      console.log('test2')
+    }
+    test2.addEventListener('click',test,false)
+    test2.removeEventListener('click',test,false)
+
+    //事件委托
+    document.body.addEventListener('click',function(e){
+      let target = e.target
+      // let currentTarget = e.currentTarget
+      // console.log(target.innerText)
+      // console.log(currentTarget)
+      console.log(target.nodeName)
+      if(target.nodeName ==='LI'){
+        e.stopPropagation()
+        e.preventDefault()
+        console.log('content is :',target.innerText)
+        
+      }
+    })
+    // 自定义事件
+    
+
+  </script>
+</body>
+</html>

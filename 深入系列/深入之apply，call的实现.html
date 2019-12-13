@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>call apply</title>
+</head>
+
+<body>
+  <script>
+    var obj = { name: 'xx' }
+
+    function ff() {
+      console.log(this.name)
+    }
+    // ff.call(obj)
+
+    Function.prototype.myCall = function (context) {
+      context.fn = this
+      context.fn()
+      delete context.fn
+    }
+
+    ff.myCall(obj)
+
+    Function.prototype.myCall2 = function (context) {
+      if(typeof this !== 'function'){
+        throw new TypeError('Error')
+      }
+
+      context = context || window
+      // 给 context 添加一个属性
+      // console.log(this)
+      context.fn = this  //obj.fn = fn
+      // 将 context 后面的参数取出来
+      var args = [...arguments].slice(1)
+      var result = context.fn(...args)
+      // 删除 fn
+      delete context.fn
+      return result
+    }
+
+    var obj2 = {name: 'macall2'}
+
+    function test (sex,age) {
+      return {
+        name: this.name,
+        sex: sex,
+        age: age
+      }
+    }
+    function test3() {
+      console.log(this.name)
+    }
+    let res = test.call(obj2,'男',28)
+    test3.myCall2(obj2)
+    console.log(res)
+  </script>
+
+  <script>
+    console.log('=====apply=====')
+    Function.prototype.maApply = function(context,array) {
+      if(typeof this !== 'function'){
+        throw new TypeError('Error')
+      }
+      context = context || window
+      context.fn=this
+      let result 
+      if(!array){
+        result = context.fn()
+      }else {
+       result = context.fn(...array)
+      }
+      delete context.fn
+      return result
+    }
+
+    var obj3 = {name: 'treedom_apply'}
+    function oo() {
+      console.log(this.name)
+    }
+    oo.maApply(obj3)
+
+    function oo3(age,h) {
+      console.log(this.name,age,h)
+      return 'aaa'
+    }
+    let result = oo3.maApply(obj3,[18,19])
+    console.log(result)
+  </script>
+</body>
+
+</html>

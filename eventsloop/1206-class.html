@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    class Person{
+      constructor(name,age){
+        this.name=name
+        this.age=age
+        console.log('class')
+      }
+      run(){
+        console.log(`今年${this.age}岁的${this.name}在跑步`)
+      }
+      static walk(){
+        
+        console.log('只能构造函数自己使用的静态方法')
+      }
+    }
+    const xiaoming = new Person('小明','5')
+    Person.walk()
+    xiaoming.run()
+  </script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>bind</title>
+</head>
+
+<body>
+  <script>
+    Function.prototype.bind2 = function (context) {
+      let _this = this
+      return function () {
+        return _this.apply(context)
+      }
+    }
+    let obj = { name: 'yyy' }
+    function aa() {
+      console.log(this.name)
+      return '11'
+    }
+    let aabind = aa.bind2(obj)
+    console.log(aabind())
+
+    Function.prototype.bind3 = function (context) {
+      if (typeof this !== 'function') {
+        throw new TypeError('Error')
+      }
+      let _this = this
+      let args = [...arguments].splice(1)
+      // let args = Array.prototype.splice.call(arguments,1) 同上
+      return function () {
+        let bindArgs = [...arguments]
+        return _this.apply(context, args.concat(bindArgs))
+      }
+    }
+
+    var foo = {
+      value: 1
+    };
+
+    function bar(name, age) {
+      console.log(this.value);
+      console.log(name);
+      console.log(age);
+
+    }
+
+    var bindFoo = bar.bind3(foo, 'daisy');
+    bindFoo('18');
+  </script>
+
+  <script>
+    console.log('====test====')
+    var value = 2;
+
+    var foo = {
+      value: 1
+    };
+
+    function bar(name, age) {
+      this.habit = 'shopping';
+      // this.value = 'value'
+      console.log(this.value);
+      console.log(name);
+      console.log(age);
+    }
+
+    function ttt() {
+      console.log(this.value)
+    }
+
+    bar.prototype.friend = 'kevin';
+
+    bar('xiao',6) //2 xiao 6
+
+    var bindfoo = bar.bind(foo,'yuanbao')
+
+    bindfoo(7) //1 yuanbao 7
+
+    var ooo = new bindfoo(5) //undefined yuanbao 5
+
+    console.log(ooo.friend)
+    console.log(ooo.habit)
+
+    console.log('======tt====')
+    ttt() //2
+    ttt.bind(foo)() //1
+
+
+    //最终版本
+    console.log('以下是最终')
+    Function.prototype.ffBind = function(context) {
+      if(typeof this !== 'function'){
+        throw new TypeError('Error')
+      }
+      let _this = this
+      // console.log(1,this)
+      let args = [...arguments].splice(1)
+      return function F(){
+        let allArgs = args.concat([...arguments])
+        // console.log(2,this)
+        // console.log(111)
+        if(this instanceof F){
+          return new _this(...allArgs)
+        }
+        return _this.apply(context,allArgs)
+      }
+    }
+    const testobj = {
+      name: 'daxiang'
+    }
+    function Gz(sex,age){
+      console.log(this.name)
+      this.sex = sex
+      this.age = age
+      console.log(sex)
+      console.log(age)
+    }
+    // let test111 = Gz.ffBind(testobj,'男')
+    // test111(3)
+    console.log(typeof Gz)
+    
+    let bindGz = Gz.ffBind(testobj)
+    let gz = new bindGz('男',999)
+    console.log(gz.sex)
+    console.log(gz.age)
+    console.log(gz.name)
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>宏任务与微任务</title>
+</head>
+<body>
+    <script>
+        /*
+        console.log('start') 
+        setTimeout(() => {
+            Promise.resolve().then(()=>{
+                console.log('set->promise')
+            })
+            console.log('settimeout')
+        }, 1000);  
+        Promise.resolve('promise').then((data)=>{
+            console.log(data)
+        })
+        console.log('end')
+        output：
+        start
+        end
+        settimeout
+        set->promise
+        */
+       /*
+       console.log('start')
+       new Promise(resolve=>{
+           resolve('resolve')
+           console.log('new promise')
+       }).then((data)=>{
+            console.log(data)
+       })
+       console.log('end')
+       output:
+       start
+       new promise
+       end
+       resolve
+       */
+
+       // setTimeout是作为宏任务存在的，而promise.then是作为微任务的，new peomise里面的代码是同步进行的。
+
+       console.log('start')
+       Promise.resolve().then(()=>{
+           setTimeout(() => {
+               console.log('promise.then1')
+               console.log('settimeout1')
+           }, 0);
+       }).then(()=>{
+           console.log('promise.then1.then')
+       })
+       setTimeout(() => {
+           console.log('settimeout2')
+           Promise.resolve().then(()=>{
+               console.log('promise.then2')
+           })
+       }, 0);
+       console.log('end')
+    </script>
+</body>
+</html>
