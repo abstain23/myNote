@@ -103,7 +103,7 @@
         let allArgs = args.concat([...arguments])
         // console.log(2,this)
         // console.log(111)
-        if(this instanceof F){
+        if(this instanceof F){ //判断当前返回的函数作为构造函数时
           return new _this(...allArgs)
         }
         return _this.apply(context,allArgs)

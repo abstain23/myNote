@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>深入之继承</title>
+</head>
+<body>
+  <script>
+    //原型链继承
+    // function Parent() {
+    //   this.name = 'tree'
+    // } 
+    // Parent.prototype.getName = function() {
+    //   console.log(this.name)
+    // }
+    // function Child() {
+
+    // }
+    // Child.prototype = new Parent()
+    // var child = new Child()
+    // child.getName()
+
+    //组合继承
+      function Parent(name) {
+        this.name = name;
+        this.colors = ['red', 'blue', 'green'];
+      }
+      Parent.prototype.getName = function() {
+        console.log(this.name)
+      }
+      function Child(name,age) {
+        Parent.call(this,name,age)
+        this.age = age
+      }
+      ///经典三步
+      function ff(){}
+      ff.prototype = Parent.prototype
+      Child.prototype = new ff()
+      //
+      var child1 = new Child('xx',18)
+      child1.colors.push('black');
+      console.log(child1.colors); 
+      console.log(child1.name,child1.age)
+      child1.getName()
+
+      var child2 = new Child('daisy', '20');
+
+      console.log(child2.name); 
+      console.log(child2.age); 
+      console.log(child2.colors);
+  </script>
+</body>
+</html>

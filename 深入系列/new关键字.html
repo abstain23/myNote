@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>new一下</title>
+</head>
+<body>
+  <script>
+    function copyNew(){
+      const obj = {}
+      Constructor = [].shift.call(arguments) //拿到需要传进来的构造函数
+      obj.__proto__ = Constructor.prototype
+      var res = Constructor.apply(obj,arguments)
+      // if(!res){
+      //   return obj
+      // }else {
+      //   let type = typeof res
+      //   if(type === 'object'||type === 'function'){
+      //     return res
+      //   }else {
+      //     return obj
+      //   }
+      // }
+      return (typeof res === 'object' || typeof res === 'function')?res || obj:obj
+      
+      // return typeof res === 'object' ? res : obj;
+    }
+
+
+    function Person (name,age){
+      this.name = name
+      this.age = age
+
+      // return function(){console.log('function')}
+      // return function(){console.log('tttttt')}
+      return null
+    }
+    Person.prototype.run =function(){
+      console.log(this.name+' is running')
+    }
+
+    const oo = copyNew(Person,'blei',18)
+    console.log(oo) //null
+    // oo.run()  
+
+    let ff = new Person('xx',3)
+    console.log(ff)
+  </script>
+</body>
+</html>

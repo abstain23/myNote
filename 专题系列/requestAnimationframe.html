@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #test {
+      height: 500px;
+      background-color: gray;
+    }
+    .yuan {
+      height: 200px;
+      width: 200px;
+      border-radius: 50%;
+      border: 1px solid red;
+      margin-top: 10px;
+      text-align: center;
+      line-height: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div id="myDiv" style="width: 0;height: 20px;line-height: 20px;background-color: gray;border-radius: 10px;text-align: left;">0%</div>
+  <div class="yuan" id="xx">0%</div>
+<button id="btn">run</button>
+<button id="btn2">run2</button>
+<script>
+var timer;
+btn.onclick = function(){
+    myDiv.style.width = '0';
+    cancelAnimationFrame(timer);
+    var timer = requestAnimationFrame(function fn(){
+        if(parseInt(myDiv.style.width) < document.documentElement.offsetWidth-100){
+            myDiv.style.width = parseInt(myDiv.style.width) + ((document.documentElement.offsetWidth-100)/100) + 'px';
+            myDiv.innerHTML =   parseInt(parseInt(myDiv.style.width)/((document.documentElement.offsetWidth-100)/100)) + '%';
+            timer = requestAnimationFrame(fn);
+        }else{
+            cancelAnimationFrame(timer);
+        }    
+    });
+}
+
+btn2.onclick = function() {
+  xx.innerHTML=0+'%'
+  xx.style.background = ''
+  cancelAnimationFrame(timer)
+
+  timer = requestAnimationFrame(function fn(){
+    return new Promise((a) => {
+      if(parseInt(xx.innerHTML)<100){
+      // console.log(xx.innerHTML)
+      var text = parseInt(xx.innerHTML) + 1
+      xx.innerHTML = text + '%'
+      timer = requestAnimationFrame(fn)
+    }else {
+      cancelAnimationFrame(timer)
+      a()
+    }
+    }).then(() => {
+      setTimeout(() => [
+      xx.style.background = 'pink'
+      ],100)
+      
+    })
+  })
+}
+
+// setInterval(() => {
+//     console.log('xx')
+//     let text = parseInt(xx.innerHTML)+1
+//     xx.innerHTML = text + '%'
+//   }, 10);
+
+  </script>
+</body>
+</html>

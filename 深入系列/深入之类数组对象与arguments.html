@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //
+
+    var array = ['name', 'age', 'sex'];
+
+    var arrayLike = {
+      0: 'name',
+      1: 'age',
+      2: 'sex',
+      length: 3
+    }
+    // 类数组不能使用数组的方法
+    // arrayLike.push('4'); //报错 arrayLike.push is not a function
+  //  console.log(Array.prototype.join.call(arrayLike,'&')) 
+
+  //  let res = Array.prototype.splice.call(arrayLike,0)
+
+  //  let res = Array.from(arrayLike)
+
+  //   let res = Array.prototype.slice.call(arrayLike) 
+
+  //   let res = Array.prototype.concat.apply([],arrayLike)
+  // let res = new Set(...arrayLike) 错误
+  //  console.log(res)
+
+
+//   function foo(age, sex) {
+//     console.log(foo.length)
+//     // eval (arguments.callee) 
+// }
+
+// foo('name', 'age', 'sex')
+
+var data = [];
+
+for (var i = 0; i < 3; i++) {
+    (data[i] = function () {
+       console.log(arguments.callee.i) 
+    }).i = i;
+}
+
+data[0]()
+data[1]()
+data[2]()
+
+  </script>
+</body>
+
+</html>
