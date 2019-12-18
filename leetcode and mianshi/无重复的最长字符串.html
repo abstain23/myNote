@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function xx(s) {
+      let num = 0, res = 0
+      let m = ''
+      for(n of s){
+        if(m.indexOf(n) === -1){
+          m +=n
+          num++
+          res = res < num?num : res
+        }else {
+          m +=n
+          m=m.slice(m.indexOf(n) + 1)
+          num = m.length
+        }
+      }
+      return res
+    }
+
+    xx('abcaccmndef')
+
+    'abc' //num =3
+    'bca' //num =3
+    'ac' //num=2
+    'c' //num=1
+    'cmndef' //num = 6
+  </script>
+</body>
+</html>

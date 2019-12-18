@@ -1,0 +1,87 @@
+/* #grid {
+    width: 450px;
+    background-color: #f3f3f3;
+    text-align: center;
+    display: inline-grid;
+    grid-template-columns: repeat(3, 33.3%);
+    grid-template-rows: 150px 150px 150px;
+}
+
+.item {
+    text-align: center;
+    border: 1px solid #fff;
+    color: #fff;
+    font-weight: bold;
+    line-height: 150px
+}
+
+.item:first-of-type {
+    background: #ef342a
+}
+
+.item:nth-of-type(2) {
+    background: #00a0a0;
+}
+
+.item:nth-of-type(3) {
+    background: #a0a0ff;
+} */
+
+#wrapper{
+    display: grid;
+    /* grid-template-columns: repeat(auto-fill, 99px);
+     */
+    /* grid-template-columns: 150px 2fr 1fr; */
+    /* grid-template-columns: 1fr 2fr minmax(200px, 1fr); */
+    /* (minmax(100px,1fr))表示列宽不小于100px，不大于1fr */
+    /* grid-template-columns: 1fr auto 100px;  */
+    /* 这种情况下auto只会让元素撑起 */
+    grid-template-columns: repeat(3, 33.3%);
+    grid-template-rows: repeat(3, 100px);
+    /* grid-row-gap: 10px;
+    grid-column-gap: 10px; */
+    grid-gap: 5px 30px;
+    grid-auto-flow:row;
+  }
+  
+  .item {
+    font-size: 4em;
+    text-align: center;
+    border: 1px solid #e5e4e9;
+  }
+  
+  .item-1 {
+    background-color: #ef342a;
+  }
+  
+  .item-2 {
+    background-color: #f68f26;
+  }
+  
+  .item-3 {
+    background-color: #4ba946;
+  }
+  
+  .item-4 {
+    background-color: #0376c2;
+  }
+  
+  .item-5 {
+    background-color: #c077af;
+  }
+  
+  .item-6 {
+    background-color: #f8d29d;
+  }
+  
+  .item-7 {
+    background-color: #b5a87f;
+  }
+  
+  .item-8 {
+    background-color: #d0e4a9;
+  }
+  
+  .item-9 {
+    background-color: #4dc7ec;
+  }

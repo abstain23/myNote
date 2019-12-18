@@ -47,6 +47,28 @@
         },wait)
       }
     }
+
+    // 第三版如果想要立即执行
+    function debounce(fn,wait,immediate){
+      var timeout
+
+      return function() {
+        var context = this
+        var agrs = arguments
+        if(timeout) clearTimeout(timeout)
+        if(immediate){
+          var callNow = !timeout
+          timeout = setTimeout(() => {
+            timeout = null
+          }, wait);
+          if(callNow) fn.apply(context,agrs)
+        }else {
+          timeout = setTimeout(() => {
+            fn.apply(context,agrs)
+          }, wait);
+        }
+      }
+    }
   </script>
 </body>
 </html>

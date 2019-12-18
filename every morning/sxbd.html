@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" id="text">
+  <span id="span"></span>
+  <script>
+    let defaultVal = ''
+    const obj = {}
+    span.innerText = defaultVal
+    text.value = defaultVal
+
+    Object.defineProperty(obj,'text',{
+      get(){
+        return defaultVal
+      },
+      set(newVal){
+        defaultVal = newVal
+        span.innerText = defaultVal
+        text.value = defaultVal
+      }
+    })
+    text.addEventListener('keyup',(e) => {
+      obj.text = e.target.value
+    })
+  </script>
+</body>
+</html>

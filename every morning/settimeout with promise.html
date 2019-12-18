@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const delay = (func, millisec, options) => {
+      let timer = 0
+      let reject = null
+      const promise = new Promise((resolve, _reject) => {
+        reject = _reject
+        timer = setTimeout(() => {
+          resolve(func(options))
+        }, millisec)
+      })
+
+      return {
+        get promise() {
+          return promise
+        },
+        cancel() {
+          if (timer) {
+            clearTimeout(timer)
+            timer = 0
+            reject(new Error('timer is cancelled'))
+            reject = null
+          }
+        },
+      }
+    }
+
+    const d = delay(({ a, b }) => {
+      console.log(a, b)
+      return a + b
+    }, 2000, { a: 1, b: 3 })
+
+    // setTimeout(() => {
+    //   return 1
+    // }, 1000);
+
+
+// function dd(fn,delayTime,options){
+//   new Promise((resolve) => {
+//     setTimeout(() => {
+//       fn(options)
+//       resolve()
+//     }, delayTime);
+//   })
+// }
+
+
+function mydd(fn,time=0){
+  let options = [...arguments].splice(2)
+  return new Promise((a) =>{
+    setTimeout(() => {
+      a(fn.apply(undefined,options))
+    }, time);
+  })
+}
+const d = mydd(fn2, 2000, 1,3,4)
+function fn2(a,b) {
+  console.log(a+b)
+  return a+b
+}
+
+  </script>
+</body>
+
+</html>
