@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>深浅拷贝</title>
+</head>
+<body>
+  <script>
+    //数组的浅拷贝
+    // concat slice
+
+    var arr = [{old: 'old'}, ['old']];
+
+    var new_arr = arr.concat();
+
+    arr[0].old = 'new';
+    arr[1][0] = 'new';
+
+    console.log(arr) // [{old: 'new'}, ['new']]
+    console.log(new_arr) // [{old: 'new'}, ['new']]
+
+    //数组的深拷贝
+    var arr = ['old', 1, true, ['old1', 'old2'], {old: 1}]
+
+    var new_arr = JSON.parse( JSON.stringify(arr) );  //不能用于拷贝函数
+
+
+    //浅拷贝的实现
+
+    var shallowCopy = function(obj) {
+      if(typeof obj !== 'object') return
+
+      var newObj = obj instanceof Array ?[]:{}
+      for(var key in obj){ //会遍历原型上的对象
+        if(obj.hasOwnproperty(key)){ //只有是自身的才可行
+          newObj[key] = obj[key]
+        }
+      }
+      return newObj
+    }
+
+
+    //深拷贝的实现
+
+    var deepCopy = function(obj) {
+      if(typeof obj !== 'object') return
+      var newObj = obj instanceof Array ? [] : {}
+      for(var key in obj){
+        if(obj.hasOwnproperty(key)){
+          newObj[key] = typeof obj[key] === 'object' ? deepCopy(obj[key]) : obj[key]
+        }
+      }
+      return newObj
+    }
+  </script>
+</body>
+</html>
