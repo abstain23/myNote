@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>从原型到原型链</title>
+</head>
+<body>
+  <script>
+
+    function Person() {
+
+    }
+    Person.prototype.name = 'cc'
+    var per1 = new Person()
+    var per2 = new Person()
+    console.log(per1.name)
+    console.log(per2.name)
+    //每个函数都有一个prototype属性,这个属性指向了一个对象，这个对象正是调用该构造函数而创建到实例的原型，也就是这个例子当中per1,per2的原型。
+    //每一个JavaScript对象(null除外)在创建的时候就会与之关联另一个对象，这个对象就是我们所说的原型，每一个对象都会从原型"继承"属性，这个对象都具有的一个属性，叫做__proto__。
+    console.log(per1.__proto__ === Person.prototype)
+    console.log(per2.__proto__ === Person.prototype)
+    //原型下的constructor 指向当前构造函数
+    console.log(Person.prototype.constructor === Person)
+    console.log(Object.getPrototypeOf(per1) === Person.prototype)
+
+    console.log(Object.prototype.__proto__ === null)
+
+    //原型链
+    per1.__proto__ => Person.prototype,然后 Person.prototype.__proto__ => Object.prototype ,最后 Object.prototype.__proto__ => null
+  </script>
+</body>
+</html>
