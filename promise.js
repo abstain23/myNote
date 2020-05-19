@@ -47,13 +47,13 @@ class MyPromise {
   then(onResolved, onRejected) {
     typeof onResolved === 'function' && this.onResolvedCbs.push(onResolved)
     typeof onRejected === 'function' && this.onRejectedCbs.push(onRejected)
-    return this
+    return this 
   }
 }
 
 new MyPromise((resolve,reject) => {
   setTimeout(() => {
-    resolve(2)
+    resolve(3)
   },1000)
 }).then(res => {
   console.log(res)
