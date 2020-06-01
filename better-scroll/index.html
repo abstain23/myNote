@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/better-scroll/dist/bscroll.min.js"></script>
+  <style>
+  .wrapper{
+  background: #fff;
+  height: 100vh;
+  width:375px;
+  overflow: hidden;
+  background:#fff;
+  /* margin-bottom:15px; */
+}
+img {
+  width: auto;
+  height: 100%;
+}
+  </style>
+</head>
+<body>
+  <div class="wrapper" id="tab">
+    <img src="./long.png" alt="">
+  </div>
+  <script>
+    new BScroll(document.getElementById('tab'), {
+      scrollX:true,
+      // eventPassthrough: 'vertical'
+    })
+  </script>
+</body>
+</html>
