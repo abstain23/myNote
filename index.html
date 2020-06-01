@@ -6,6 +6,19 @@
   <title>Document</title>
 </head>
 <body>
-  <script src="./手写create.js"></script>
+  <div>
+    <button id="btn">click</button>
+  </div>
+  <script src="./手写一个event.js"></script>
+  <script>
+    const fn1 = () => {
+      console.log('111')
+    }
+    const fn2 = () => {
+      console.log('111')
+    }
+    document.getElementById('btn').addEventListener('click', () => {console.log(1)})
+    document.getElementById('btn').addEventListener('click', () => {console.log(1)})
+  </script>
 </body>
 </html>
