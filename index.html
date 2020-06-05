@@ -9,16 +9,39 @@
   <div>
     <button id="btn">click</button>
   </div>
-  <script src="./手写一个event.js"></script>
+  <!-- <script src="./手写一个event.js"></script> -->
+  <script src='./实现一个简单的promise.js'></script>
   <script>
-    const fn1 = () => {
-      console.log('111')
-    }
-    const fn2 = () => {
-      console.log('111')
-    }
-    document.getElementById('btn').addEventListener('click', () => {console.log(1)})
-    document.getElementById('btn').addEventListener('click', () => {console.log(1)})
+    // const fn1 = () => {
+    //   console.log('111')
+    // }
+    // const fn2 = () => {
+    //   console.log('111')
+    // }
+    // document.getElementById('btn').addEventListener('click', () => {console.log(1)})
+    // document.getElementById('btn').addEventListener('click', () => {console.log(1)})
+
+    let pp = new Promise((res, rej) => {
+      setTimeout(() => {
+        res(22)
+      },1000)
+    })
+    console.log(pp)
+    pp.then(res => {
+      console.log(res)
+    }, err => {console.log(err.message)})
+   const a =  pp.then(res => {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve(res)
+        })
+      })
+    }, err => console.log(err.message))
+    
+    a.then(res => {
+      console.log(res)
+    })
+    console.log('end')
   </script>
 </body>
 </html>
