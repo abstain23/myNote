@@ -131,15 +131,41 @@
     }
 
     Promise.resolve = function (value) {
-      
+      return new Promise(resolve => {
+        resolve()
+      })
     }
 
     Promise.rejected = function (reason) {
-
+      return new Promise((_, reject) => {
+        reject()
+      })
     }
 
     Promise.all = function (promises) {
-
+      let len = promises.length, index = 0, results = []
+      return new Promise((resolve, reject) => {
+        for(let i = 0; i < len; i++) {
+          let item = promises[i]
+          if(item instanceof Promise) {
+            item.then(res => {
+              results[i] = res
+              index++
+              if(index === len) {
+                resolve(results)
+              }
+            }).catch(reason => {
+              reject(reason)
+            })
+          } else {
+            results[i] = item
+            index++
+            if(index === len) {
+              resolve(results)
+            }
+          }
+        }
+      })
     }
 
     Promise.race = function (promises) {
