@@ -12,6 +12,7 @@
     var chunkSize=2*1024*1024
     var file = document.getElementById('file'), btn = document.getElementById('btn')
     var formData = new FormData()
+    var chunks=[]
     btn.addEventListener('click', () => {
      var fileItem = file.files[0]
      var blob = fileItem.slice(0, chunkSize) 
