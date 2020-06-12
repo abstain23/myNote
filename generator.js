@@ -35,7 +35,7 @@ function run(gen) {
   _next()
 }
 */
-// run(mtGenerator)
+run(mtGenerator)
 
 function run(gen) {
   return new Promise((resolve, reject) => {

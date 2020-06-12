@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type='file' id="file" multiple>
+  <button id="btn">上传</button>
+  <script>
+    var chunkSize=2*1024*1024
+    var file = document.getElementById('file'), btn = document.getElementById('btn')
+    var formData = new FormData()
+    btn.addEventListener('click', () => {
+     var fileItem = file.files[0]
+     var blob = fileItem.slice(0, chunkSize) 
+     console.log(blob)
+    })
+  </script>
+</body>
+</html>
