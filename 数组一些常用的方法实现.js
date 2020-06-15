@@ -86,3 +86,4 @@ Array.prototype.find = function (cb, context) {
     if(res) return arr[i]
   }
 }
+

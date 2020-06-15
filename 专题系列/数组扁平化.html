@@ -11,13 +11,13 @@
     
     var arr = [1, [2, [3, 4]]];
 
-    function xx(arr) {
+    function flat(arr) {
       return arr.reduce((pre,next) => {
         return pre.concat(Array.isArray(next)? xx(next) : next)
       },[])
     }
 
-    console.log(xx(arr))
+    console.log(falt(arr))
   </script>
 </body>
 </html>
