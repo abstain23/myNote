@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>模拟实现Symbol</title>
+</head>
+<body>
+  <div>
+    <h4> Symbol 函数前不能使用 new 命令，否则会报错。这是因为生成的 Symbol 是一个原始类型的值，不是对象。</h4>
+    <h4>Symbol 值不能与其他类型的值进行运算，会报错。 </h4>
+  </div>
+  <script>
+    var s = Symbol()
+    console.log(s) // Symbol()
+    console.log(typeof s)
+    console.log(s instanceof Symbol) //false
+    var s1 = Symbol('s1')
+    console.log(s1) // Symbol(s1)
+    let obj = {
+      toString() {
+        return 'toString'
+      }
+    }
+    const sym = Symbol(obj)
+    console.log(sym) // Symbol(toString
+    var s2 = Symbol('s1')
+    // Symbol 函数的参数只是表示对当前 Symbol 值的描述，相同参数的 Symbol 函数的返回值是不相等的。
+    console.log(s2 === s1)  // false
+    var ss = Symbol.for('sss')
+    var ss2 = Symbol.for('sss')
+    console.log(ss === ss2) //true
+  </script>
+</body>
+</html>
