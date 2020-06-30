@@ -171,8 +171,8 @@
     Promise.race = function (promises) {
 
     }
-    window.Promise = Promise
-  }(window)
+    global.Promise = Promise
+  }(global)
 
 
 function red() {
