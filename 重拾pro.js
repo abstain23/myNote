@@ -119,16 +119,21 @@ MyPromise.race = function (promises) {
   })
 }
 
-let promise = new MyPromise((resolve, reject) => {
-  setTimeout(() => {
-    resolve('cccc')
-  }, 1000);
-})
-promise.then((value) => {
-  console.log(value)
-  throw '111das'
-}).then(1,2).then(res => console.log(res), err => console.log(err))
+// let promise = new MyPromise((resolve, reject) => {
+//   setTimeout(() => {
+//     resolve('cccc')
+//   }, 1000);
+// })
+// promise.then((value) => {
+//   console.log(value)
+//   throw '111das'
+// }).then(1,2).then(res => console.log(res), err => console.log(err))
 
-MyPromise.all([1, promise, 2]).then(res => {
-  console.log(res)
-})
+// MyPromise.all([1, promise, 2]).then(res => {
+//   console.log(res)
+// })
+const promise = MyPromise.resolve()
+  .then(() => {
+    return promise
+  })
+promise.catch(console.error)

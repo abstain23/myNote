@@ -36,3 +36,15 @@ function deepclone2(obj) {
     return newObj
   }
 }
+
+// 1 7 6 8 2 4 3 5 9 11 10 12 script end
+
+// script start async2 end Promise async1 end promise1 promise2 setTimeout
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/sw.js').then(function (regis) {
+        console.log('ok')
+    }, function (err) { console.log('err', err) })
+  })
+}
