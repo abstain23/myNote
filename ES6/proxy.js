@@ -60,3 +60,5 @@ const myProxy = new Proxy(myObj, {
 
 // console.log(myProxy.age)
 myProxy.age = '19'
+
+
