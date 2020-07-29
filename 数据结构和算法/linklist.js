@@ -19,12 +19,12 @@ function reverseList(list) {
     let arr = []
     let head = list
     let temp = head
-    console.log(temp)
+    // console.log(temp)
     while(temp) {
         arr.push(temp.value)
         temp = temp.next
     }
-    console.log(arr)
+    // console.log(arr)
     temp = head
 
     while(temp) {
